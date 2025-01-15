@@ -19,7 +19,7 @@ def get_db():
     finally:
         db.close()
 
-@app.get("/api/v1/tasks", response_model=List[schemas.TaskResponse])
+@app.get("/api/v1/tasks", response_model=List[schemas.TaskResponse],status_code=200)
 def get_tasks(db: Session = Depends(get_db)):
     """Get all tasks"""
      # query関数でmodels.pyで定義したモデルを指定し、.all()関数ですべてのレコードを取得
@@ -42,7 +42,7 @@ def create_task(
     db.refresh(db_task)
     return db_task
 
-@app.get("/api/v1/tasks/{task_id}", response_model=schemas.TaskResponse)
+@app.get("/api/v1/tasks/{task_id}", response_model=schemas.TaskResponse,status_code=200)
 def get_task(
     task_id: int, 
     db: Session = Depends(get_db)
@@ -53,7 +53,7 @@ def get_task(
         raise HTTPException(status_code=404, detail="Task not found")
     return db_task
 
-@app.put("/api/v1/tasks/{task_id}", response_model=schemas.TaskResponse)
+@app.put("/api/v1/tasks/{task_id}", response_model=schemas.TaskResponse,status_code=200)
 def update_task(
     task_id: int, 
     task_update: schemas.TaskUpdate, 
