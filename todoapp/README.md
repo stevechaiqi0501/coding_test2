@@ -55,6 +55,8 @@ curl -X 'GET' \
   'http://localhost:8080/api/v1/tasks' \
   -H 'accept: application/json'
 ```
+
+(id別に取得したい場合、tasks/{id}を挿入)
 成功時のレスポンス例（ステータスコード: 200）:
 ```json
 [
